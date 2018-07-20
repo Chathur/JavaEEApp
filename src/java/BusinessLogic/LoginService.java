@@ -7,7 +7,7 @@ package BusinessLogic;
 
 import DTO.User;
 import Model.Users;
-import Util.NewHibernateUtil;
+import Util.NewHibernateUtil1;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.hibernate.Query;
@@ -28,7 +28,7 @@ public class LoginService {
             String username = userInput.getID();
             String passwordinput = userInput.getPassword();
             
-            session = NewHibernateUtil.getSessionFactory().openSession();
+            session = NewHibernateUtil1.getSessionFactory().openSession();
             tx = session.getTransaction();
             tx.begin();
         

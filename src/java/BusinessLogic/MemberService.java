@@ -48,7 +48,7 @@ public class MemberService {
         return list;
     }
     
-    public Members getSingleById(String id){
+    public User getSingleById(String id){
         User user = null;
         
         Session session = null;
@@ -62,10 +62,18 @@ public class MemberService {
         Query query = session.createQuery("SELECT * FROM members where id ='" +id + "'");
         Members queryResult = (Members)query.uniqueResult();
         
+        user.setID(queryResult.getId());
+        user.setFirstName(queryResult.getName());
+        user.setLastName(queryResult.getStatus());
+        user.setAddress(queryResult.getAddress());
+        user.setDOB(queryResult.getDob().toString());
+        user.setDOR(queryResult.getDor());
+        user.setBalance(queryResult.getBalance());
+        
         tx.commit();
         session.close();
         
-        return queryResult;
+        return user;
     }
     
     public List getRecordsById(String id)
