@@ -61,8 +61,7 @@ public class LoginServlet extends HttpServlet {
             PaymentService payments = new PaymentService();
             ClaimService claims = new ClaimService();
             
-            boolean isAdmin = false;
-            isAdmin = (boolean) session.getAttribute("isAdmin");
+            boolean isAdmin = (loginDaoReturn.matches("ADMIN")) ? true :  false;
 
             
             if(loginDaoReturn.equals("SUCCESS")){ //if password and username matches
@@ -89,7 +88,7 @@ public class LoginServlet extends HttpServlet {
             else 
             {
                 session.setAttribute("error", "It appears that the username and password is wrong. Try again."); //set error message to be sent to index.jsp
-                response.sendRedirect("/UWE_ESD"); //redirect back to main page
+                response.sendRedirect("/WebApplication4"); //redirect back to main page
             }
         }
     }

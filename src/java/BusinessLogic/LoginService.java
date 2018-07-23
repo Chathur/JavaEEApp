@@ -32,7 +32,7 @@ public class LoginService {
             tx = session.getTransaction();
             tx.begin();
         
-            Query query = session.createQuery("SELECT * FROM users where id ='" + username + "' and password ='"+ passwordinput +"'");
+            Query query = session.createQuery("FROM Users where id ='" + username + "' and password ='"+ passwordinput +"'");
             Users queryResult = (Users)query.uniqueResult();
             String usernameDB = queryResult.getId();
             String passwordDB = queryResult.getPassword();

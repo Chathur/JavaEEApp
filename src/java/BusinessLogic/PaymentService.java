@@ -37,7 +37,7 @@ public class PaymentService {
                 tx = session.getTransaction();
                 tx.begin();
                 
-                Query query = session.createQuery("SELECT * FROM users where id='"+ user.getID() +"'");
+                Query query = session.createQuery("FROM users where id='"+ user.getID() +"'");
                 Members queryResult = (Members)query.uniqueResult();// stmt.executeQuery(sql);
                 queryResult.setBalance((float) (queryResult.getBalance()+ payment));
                 session.update(queryResult);
@@ -80,8 +80,8 @@ public class PaymentService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("SELECT * FROM payments");
-        List<Payments> queryResult = (List<Payments>)query.uniqueResult();
+        Query query = session.createQuery("FROM payments");
+        List<Payments> queryResult = (List<Payments>)query.list();
         
         queryResult.forEach(element -> {
             list.add(element);
@@ -101,8 +101,8 @@ public class PaymentService {
         session = NewHibernateUtil.getSessionFactory().openSession();
         tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("SELECT * FROM payments WHERE mem_id='"+ user.getID() +"'");
-        List<Payments> queryResult = (List<Payments>)query.uniqueResult();
+        Query query = session.createQuery("FROM Payments WHERE mem_id='"+ user.getID() +"'");
+        List<Payments> queryResult = (List<Payments>)query.list();
         queryResult.forEach(element -> {
             list.add(element);
         });

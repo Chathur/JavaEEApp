@@ -36,8 +36,8 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("SELECT * FROM members");
-        List<Members> queryResult = (List<Members>)query.uniqueResult();
+        Query query = session.createQuery("FROM members");
+        List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
             list.add(element);
@@ -49,7 +49,7 @@ public class MemberService {
     }
     
     public User getSingleById(String id){
-        User user = null;
+        User user = new User();
         
         Session session = null;
         Transaction tx = null;
@@ -59,7 +59,7 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("SELECT * FROM members where id ='" +id + "'");
+        Query query = session.createQuery("FROM Members where id ='" +id + "'");
         Members queryResult = (Members)query.uniqueResult();
         
         user.setID(queryResult.getId());
@@ -86,8 +86,8 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("SELECT * FROM members where id = '" +id+"'");
-        List<Members> queryResult = (List<Members>)query.uniqueResult();
+        Query query = session.createQuery("FROM members where id = '" +id+"'");
+        List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
             list.add(element);
@@ -108,8 +108,8 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("SELECT * FROM members where status = '" +status+"'");
-        List<Members> queryResult = (List<Members>)query.uniqueResult();
+        Query query = session.createQuery("FROM members where status = '" +status+"'");
+        List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
             list.add(element);

@@ -31,8 +31,8 @@ public class ClaimService {
         session = NewHibernateUtil.getSessionFactory().openSession();
         tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("SELECT * FROM claims");
-        List<Claims> claimsModel = (List<Claims>) query.uniqueResult();
+        Query query = session.createQuery("FROM Claims");
+        List<Claims> claimsModel = (List<Claims>) query.list();
         claimsModel.forEach(element -> {
             list.add(element);
         });
@@ -52,8 +52,8 @@ public class ClaimService {
         session = NewHibernateUtil.getSessionFactory().openSession();
         tx = session.getTransaction();
         tx.begin();
-        Query query = session.createQuery("SELECT * FROM Claims WHERE mem_id='"+ user.getID() +"'");
-        List<Claims> claimsModel = (List<Claims>) query.uniqueResult();
+        Query query = session.createQuery("FROM Claims WHERE mem_id='"+ user.getID() +"'");
+        List<Claims> claimsModel = (List<Claims>) query.list();
         claimsModel.forEach(element -> {
             list.add(element);
         });
@@ -93,7 +93,7 @@ public class ClaimService {
         tx = session.getTransaction();
         tx.begin();
         
-        Query query = session.createQuery("SELECT * FROM claims WHERE id="+ id );
+        Query query = session.createQuery("FROM claims WHERE id="+ id );
         Claims claimModel = (Claims) query.uniqueResult();
         
         claimModel.setStatus(status);
