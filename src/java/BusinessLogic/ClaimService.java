@@ -27,6 +27,7 @@ public class ClaimService {
         List list = new ArrayList();
         Session session = null;
         Transaction tx = null;
+        DTO.Claim claimModel = new DTO.Claim();
         
         session = NewHibernateUtil.getSessionFactory().openSession();
         tx = session.getTransaction();
@@ -34,7 +35,15 @@ public class ClaimService {
         Query query = session.createQuery("FROM Claims");
         List<Claims> claimsModel = (List<Claims>) query.list();
         claimsModel.forEach(element -> {
-            list.add(element);
+            
+            claimModel.setId(element.getId());
+            claimModel.setAmount(element.getAmount());
+            claimModel.setDate(element.getDate());
+            claimModel.setMem_id(element.getMemId());
+            claimModel.setRationale(element.getRationale());
+            claimModel.setStatus(element.getStatus());
+            
+            list.add(claimModel);
         });
         
         session.close();

@@ -30,7 +30,8 @@ public class MemberService {
     {
         Session session = null;
         Transaction tx = null;
-        List list = new ArrayList();
+        List list = new ArrayList<>();
+        User userModel = new User();
         
         session = NewHibernateUtil.getSessionFactory().openSession();
         tx = session.getTransaction();
@@ -40,7 +41,16 @@ public class MemberService {
         List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
-            list.add(element);
+            
+            userModel.setID(element.getId());
+            userModel.setAddress(element.getAddress());
+            userModel.setBalance(element.getBalance());
+            //userModel.setDOB(element.getDob().toString());
+            userModel.setDOR(element.getDor());
+            userModel.setFirstName(element.getName());
+            userModel.setLastName(element.getStatus());
+            
+            list.add(userModel);
         });
         
         tx.commit();
