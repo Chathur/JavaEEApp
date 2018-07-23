@@ -36,7 +36,7 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("FROM members");
+        Query query = session.createQuery("FROM Members");
         List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
@@ -86,7 +86,7 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("FROM members where id = '" +id+"'");
+        Query query = session.createQuery("FROM Members where id = '" +id+"'");
         List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
@@ -108,7 +108,7 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("FROM members where status = '" +status+"'");
+        Query query = session.createQuery("FROM Members where status = '" +status+"'");
         List<Members> queryResult = (List<Members>)query.list();
         
         queryResult.forEach(element -> {
@@ -191,8 +191,8 @@ public class MemberService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query1 = session.createQuery("DELETE FROM users WHERE id='" + id + "'");
-        Query query2 = session.createQuery("UPDATE members SET status='DELETED' WHERE id='" + id + "';");
+        Query query1 = session.createQuery("DELETE FROM Users WHERE id='" + id + "'");
+        Query query2 = session.createQuery("UPDATE Members SET status='DELETED' WHERE id='" + id + "';");
         query1.uniqueResult();
         query2.uniqueResult();
         

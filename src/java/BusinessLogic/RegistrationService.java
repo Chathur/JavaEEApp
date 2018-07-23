@@ -33,7 +33,7 @@ public class RegistrationService {
                 tx = session.getTransaction();
                 tx.begin();
 
-                Query query = session.createQuery("SELECT * FROM users where id='"+ id +"'");
+                Query query = session.createQuery("FROM Users where id='"+ id +"'");
                 Users queryResult = (Users)query.uniqueResult();// stmt.executeQuery(sql);
 
                 if(queryResult.getId().equals(id)){

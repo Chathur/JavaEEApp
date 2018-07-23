@@ -37,7 +37,7 @@ public class PaymentService {
                 tx = session.getTransaction();
                 tx.begin();
                 
-                Query query = session.createQuery("FROM users where id='"+ user.getID() +"'");
+                Query query = session.createQuery("FROM Users where id='"+ user.getID() +"'");
                 Members queryResult = (Members)query.uniqueResult();// stmt.executeQuery(sql);
                 queryResult.setBalance((float) (queryResult.getBalance()+ payment));
                 session.update(queryResult);
@@ -80,7 +80,7 @@ public class PaymentService {
         tx = session.getTransaction();
         tx.begin();
 
-        Query query = session.createQuery("FROM payments");
+        Query query = session.createQuery("FROM Payments");
         List<Payments> queryResult = (List<Payments>)query.list();
         
         queryResult.forEach(element -> {
@@ -122,7 +122,7 @@ public class PaymentService {
         for (Object list1 : list) {
             User user = (User) list1;
             if(!user.isUserValid().equals("DELETED")){
-                Query query = session.createQuery("UPDATE members SET balance=balance-"+ amount +
+                Query query = session.createQuery("UPDATE Members SET balance=balance-"+ amount +
                         " WHERE id='"+ user.getID() + "'");
                 query.executeUpdate();
                 tx.commit();

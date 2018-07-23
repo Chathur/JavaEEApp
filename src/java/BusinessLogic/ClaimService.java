@@ -93,7 +93,7 @@ public class ClaimService {
         tx = session.getTransaction();
         tx.begin();
         
-        Query query = session.createQuery("FROM claims WHERE id="+ id );
+        Query query = session.createQuery("FROM Claims WHERE id="+ id );
         Claims claimModel = (Claims) query.uniqueResult();
         
         claimModel.setStatus(status);
