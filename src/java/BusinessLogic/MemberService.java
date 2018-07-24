@@ -49,6 +49,7 @@ public class MemberService {
             userModel.setDOR(element.getDor());
             userModel.setFirstName(element.getName());
             userModel.setLastName(element.getStatus());
+            userModel.setUserValid(element.getStatus());
             
             list.add(userModel);
         });
@@ -79,6 +80,7 @@ public class MemberService {
         user.setDOB(queryResult.getDob().toString());
         user.setDOR(queryResult.getDor());
         user.setBalance(queryResult.getBalance());
+        user.setUserValid(queryResult.getStatus());
         
         tx.commit();
         session.close();

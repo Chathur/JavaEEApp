@@ -106,6 +106,7 @@ public class PaymentService {
         Session session = null;
         Transaction tx = null;
         List list = new ArrayList();
+        DTO.Payments paymentsDTO = new DTO.Payments();
         
         session = NewHibernateUtil.getSessionFactory().openSession();
         tx = session.getTransaction();
@@ -113,7 +114,13 @@ public class PaymentService {
         Query query = session.createQuery("FROM Payments WHERE mem_id='"+ user.getID() +"'");
         List<Payments> queryResult = (List<Payments>)query.list();
         queryResult.forEach(element -> {
-            list.add(element);
+            paymentsDTO.setId(element.getId().toString());
+            paymentsDTO.setAmount(Float.toString(element.getAmount()));
+            paymentsDTO.setDate(element.getDate().toString());
+            paymentsDTO.setType(element.getTypeOfPayment());
+            
+            
+            list.add(paymentsDTO);
         });
         
         session.close();
